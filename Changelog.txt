@@ -1,0 +1,6 @@
+
+- v1.0 : 2013-02-28
+
+Adapted from 4nes4snes v1.3
+
+
