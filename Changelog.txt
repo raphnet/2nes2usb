@@ -1,10 +1,13 @@
--v 1.1 : 2013-03-25
+-- Version 1.2 : 2013-04-27
+ * Support for Atmega168. Use Makefile.atmega168.
+ * Code cleanups
+ * Simplified main loop by remving setIdle/getIdle implementation. Optional
+ for joysticks according to HID specification appendix G.
 
-New USB ID
+-- Version 1.1 : 2013-03-25
+ * New USB ID
 
-
-- v1.0 : 2013-02-28
-
-Adapted from 4nes4snes v1.3
+-- Version 1.0 : 2013-02-28
+ * Adapted from 4nes4snes v1.3
 
 

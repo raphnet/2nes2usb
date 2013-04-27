@@ -13,7 +13,6 @@
 #include <avr/pgmspace.h>
 #include <string.h>
 #include "gamepad.h"
-#include "leds.h"
 #include "2nsnes.h"
 
 #define GAMEPAD_BYTES	8	/* 2 byte per snes controller * 4 controllers */
