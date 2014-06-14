@@ -5,8 +5,6 @@
  * License: GPLv2
  * Tabsize: 4
  */
-#define F_CPU   12000000L  
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
