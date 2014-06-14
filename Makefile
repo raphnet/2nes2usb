@@ -30,8 +30,8 @@ clean:
 	rm -f $(HEXFILE) main.lst main.obj main.cof main.list main.map main.eep.hex main.bin *.o usbdrv/*.o main.s usbdrv/oddebug.s usbdrv/usbdrv.s
 
 # file targets:
-main.bin:	$(COMMON_OBJS)	2nsnes.o devdesc.o 
-	$(LD) -o main.bin $(OBJECTS) -Wl,-Map=main.map
+main.bin:	$(COMMON_OBJS) 2nsnes.o devdesc.o
+	$(LD) $(LDFLAGS) -o main.bin $(OBJECTS) -Wl,-Map=main.map
 
 
 $(HEXFILE):	main.bin
@@ -39,12 +39,8 @@ $(HEXFILE):	main.bin
 	avr-objcopy -j .text -j .data -O ihex main.bin $(HEXFILE)
 	./checksize main.bin
 
-flash:	all
-	#$(UISP) --erase --upload --verify if=$(HEXFILE)
-	$(UISP) --erase --upload if=$(HEXFILE)
-
-flash_usb:
-	avrdude -p m8 -P usb -c avrispmkII -Uflash:w:$(HEXFILE) -B 1.0
+flash:
+	avrdude -p m8 -P usb -c avrispmkII -Uflash:w:$(HEXFILE) -B 2.0
 
 # Fuse high byte:
 # 0xc9 = 1 1 0 0   1 0 0 1 <-- BOOTRST (boot reset vector at 0x0000)
@@ -63,9 +59,10 @@ flash_usb:
 #        | +------------------ BODEN (BrownOut Detector enabled)
 #        +-------------------- BODLEVEL (2.7V)
 fuse:
-	$(UISP) --wr_fuse_h=0xc9 --wr_fuse_l=0x9f
-
-fuse_usb:
 	avrdude -p m8 -P usb -c avrispmkII -Uhfuse:w:0xc9:m -Ulfuse:w:0x9f:m -B 10.0
 
+reset:
+	avrdude -p m8 -P usb -c avrispmkII -B 10.0
 
+erase:
+	avrdude -p m8 -P usb -c avrispmkII -e -B 10.0
