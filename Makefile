@@ -44,7 +44,7 @@ flash:	all
 	$(UISP) --erase --upload if=$(HEXFILE)
 
 flash_usb:
-	sudo avrdude -p m8 -P usb -c avrispmkII -Uflash:w:$(HEXFILE) -B 1.0
+	avrdude -p m8 -P usb -c avrispmkII -Uflash:w:$(HEXFILE) -B 1.0
 
 # Fuse high byte:
 # 0xc9 = 1 1 0 0   1 0 0 1 <-- BOOTRST (boot reset vector at 0x0000)
@@ -66,6 +66,6 @@ fuse:
 	$(UISP) --wr_fuse_h=0xc9 --wr_fuse_l=0x9f
 
 fuse_usb:
-	sudo avrdude -p m8 -P usb -c avrispmkII -Uhfuse:w:0xc9:m -Ulfuse:w:0x9f:m -B 10.0
+	avrdude -p m8 -P usb -c avrispmkII -Uhfuse:w:0xc9:m -Ulfuse:w:0x9f:m -B 10.0
 
 
