@@ -23,7 +23,7 @@ all:	$(HEXFILE)
 .c.s:
 	$(CC) $(CFLAGS) -S $< -o $@
 
-main.o: main.c serial.c
+main.o: main.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
